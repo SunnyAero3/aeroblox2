@@ -1,14 +1,14 @@
 import { supabase } from "./supabase.js";
 
-async function loadProfile() {
-  let { data } = await supabase.auth.getUser();
-  document.getElementById("username").innerText = data.user.email;
-}
+window.loadProfile = async function() {
+  const { data } = await supabase.auth.getUser();
+  username.innerText = data.user.email;
+};
 
-async function updateProfile() {
-  let newName = document.getElementById("newName").value;
+window.updateProfile = async function() {
+  const { data } = await supabase.auth.getUser();
 
   await supabase.from("profiles").update({
-    username: newName
-  }).eq("id", (await supabase.auth.getUser()).data.user.id);
-}
+    username: newName.value
+  }).eq("id", data.user.id);
+};
