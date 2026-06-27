@@ -2,9 +2,10 @@ import { supabase } from "./supabase.js";
 
 window.launchGame = async function(gameId) {
 
-  const { data: session } = await supabase.auth.getSession();
+  const { data } = await supabase.auth.getSession();
+  const session = data.session;
 
-  if (!session?.session) return;
+  if (!session) return;
 
   await fetch("http://127.0.0.1:49152/launch", {
     method: "POST",
@@ -13,8 +14,8 @@ window.launchGame = async function(gameId) {
     },
     body: JSON.stringify({
       game_id: gameId,
-      user_id: session.session.user.id,
-      session_token: session.session.access_token
+      user_id: session.user.id,
+      session_token: session.access_token
     })
   });
 
