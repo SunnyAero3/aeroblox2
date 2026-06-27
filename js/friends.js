@@ -1,15 +1,18 @@
 import { supabase } from "./supabase.js";
 
-async function sendRequest() {
-  let target = document.getElementById("friendId").value;
+window.sendRequest = async function() {
+  const { data } = await supabase.auth.getUser();
 
   await supabase.from("friend_requests").insert({
-    to_user: target
+    from_user: data.user.id,
+    to_user: friendId.value
   });
-}
+};
 
-async function loadFriends() {
-  let { data } = await supabase.from("friends").select("*");
-  document.getElementById("friendsList").innerHTML =
-    data.map(f => `<div class="card">${f.friend_id}</div>`).join("");
-}
+window.loadFriends = async function() {
+  const { data } = await supabase.from("friends").select("*");
+
+  friendsList.innerHTML = data.map(f =>
+    `<div class="card">${f.friend_id}</div>`
+  ).join("");
+};
