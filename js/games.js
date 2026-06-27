@@ -1,12 +1,12 @@
 import { supabase } from "./supabase.js";
 
-async function loadGames() {
-  let container = document.getElementById("gamesContainer");
+window.loadGames = async function() {
+  const container = document.getElementById("gamesContainer");
 
-  let { data } = await supabase.from("games").select("*");
+  const { data } = await supabase.from("games").select("*");
 
   data.forEach(game => {
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.className = "card";
 
     div.innerHTML = `
@@ -16,4 +16,4 @@ async function loadGames() {
 
     container.appendChild(div);
   });
-}
+};
