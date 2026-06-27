@@ -6,16 +6,16 @@
 </head>
 <body onload="loadFriends()">
 
-  <div class="header">Friends</div>
+<div class="header">Friends</div>
 
-  <div class="card">
-    <input id="friendId" placeholder="User ID">
-    <button onclick="sendRequest()">Send Request</button>
-  </div>
+<div class="card">
+  <input id="friendId">
+  <button onclick="sendRequest()">Add Friend</button>
+</div>
 
-  <div id="friendsList"></div>
+<div id="friendsList"></div>
 
-  <script src="../js/supabase.js"></script>
-  <script src="../js/friends.js"></script>
+<script type="module" src="../js/friends.js"></script>
+
 </body>
 </html>
